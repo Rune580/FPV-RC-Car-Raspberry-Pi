@@ -33,20 +33,20 @@ def MainLoop():
 
 def Main():
     cont_func()
-    if lar < -0.3:
-        print("Left")
-    if lar > 0.3:
-        print("Right")
-    if lar > -0.3 and lar < 0.3:
-        print("Straight")
+    #if lar < -0.3:
+        #print("Left")
+    #if lar > 0.3:
+        #print("Right")
+    #if lar > -0.3 and lar < 0.3:
+        #print("Straight")
 
     fab = fwd - bwd
-    if fab == -1:
-        print("Backwards")
-    if fab == 0:
-        print("Idle")
-    if fab == 1:
-        print("Forwards")
+    #if fab == -1:
+        #print("Backwards")
+    #if fab == 0:
+        #print("Idle")
+    #if fab == 1:
+        #print("Forwards")
 
     fb = str(fab)
     lr = str(lar)
@@ -145,7 +145,7 @@ def cont_func():
     button_map = []
 
     # Open the joystick device.
-    fn = '/dev/input/js1'
+    fn = '/dev/input/js0'
     #print(('Opening %s...' % fn))
     jsdev = open(fn, 'rb')
 

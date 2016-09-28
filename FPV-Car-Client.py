@@ -19,24 +19,24 @@ def Main():
         lor = float(N2)
         fab = float(N1)
 
-        if lor < -0.3:
-            print("Left")
-        if lor > 0.3:
-            print("Right")
-        if lor > -0.3 and lor < 0.3:
-            print("Straight")
+        
 
 
         if fab == -1:
             print("Backwards")
-        if fab == 0:
-            print("Idle")
-        if fab == 1:
+        elif fab == 1:
             print("Forwards")
+        else:
+            print("Idle")
+
+        if lor < -0.3:
+            print("Left")
+        elif lor > 0.3:
+            print("Right")
+        else:
+            print("Straight")
 
 
-
-
-
+try:
 if __name__ == '__main__':
     Main()
