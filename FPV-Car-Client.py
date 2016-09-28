@@ -1,7 +1,9 @@
+#!/bin/python3
+
 import socket
 
 def Main():
-    host = '127.0.0.1'
+    host = '10.0.0.6'
     port = 5000
 
     mySocket = socket.socket()
@@ -23,19 +25,30 @@ def Main():
 
 
         if fab == -1:
-            print("Backwards")
+            #print("Backwards")
+            GPIO.output(19, GPIO.LOW)
+            GPIO.output(13, GPIO.HIGH)
         elif fab == 1:
-            print("Forwards")
+            #print("Forwards")
+            GPIO.output(13, GPIO.LOW)
+            GPIO.output(19, GPIO.HIGH)
         else:
-            print("Idle")
+            #print("Idle")
+            GPIO.output(13, GPIO.LOW)
+            GPIO.output(19, GPIO.LOW)
 
         if lor < -0.3:
-            print("Left")
+            #print("Left")
+            GPIO.output(6, GPIO.LOW)
+            GPIO.output(5, GPIO.HIGH)
         elif lor > 0.3:
-            print("Right")
+            #print("Right")
+            GPIO.output(5, GPIO.LOW)
+            GPIO.output(6, GPIO.HIGH)
         else:
-            print("Straight")
-
+            #print("Straight")
+			GPIO.output(5, GPIO.LOW)
+            GPIO.output(6, GPIO.LOW)
 
 try:
 if __name__ == '__main__':

@@ -1,3 +1,5 @@
+#!/bin/python3
+
 #Imports the dependencies
 import os, time, struct, array, socket
 from fcntl import ioctl
@@ -16,7 +18,7 @@ bwd = 0
 #For Example:
 #[1,0.5] is forward and turned to the right halfway
 def Server():
-    host = "127.0.0.1"
+    host = "10.0.0.6"
     port = 5000
 
     mySocket = socket.socket()
