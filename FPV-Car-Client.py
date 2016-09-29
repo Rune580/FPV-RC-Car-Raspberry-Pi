@@ -1,6 +1,6 @@
 #!/bin/python3
 
-import socket
+import socket, logging
 
 def Main():
     host = '10.0.0.6'
@@ -14,13 +14,15 @@ def Main():
         data = mySocket.recv(1024).decode()
 
         move_list = str(data).split()
-
-        N1 = move_list[len(move_list)-2]
-        N2 = move_list[len(move_list)-1]
-
-        lor = float(N2)
-        fab = float(N1)
-
+        size = len(move_list)
+        if size != 1:
+            N1 = move_list[len(move_list)-2]
+            N2 = move_list[len(move_list)-1]
+            lor = float(N2)
+            fab = float(N1)
+        else:
+            logging.warning("Server-Side check was ineffective!")
+            logging.info("Trying again")
 
 
 

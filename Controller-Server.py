@@ -1,7 +1,7 @@
 #!/bin/python3
 
 #Imports the dependencies
-import os, time, struct, array, socket
+import os, time, struct, array, socket, logging
 from fcntl import ioctl
 global close_loop
 global fwd
@@ -58,7 +58,10 @@ def Main():
     data = str(test).split()
     size = len(data)
     if size != 1:
-        conn.send(data.encode())
+        conn.send(test.encode())
+    else:
+        logging.warning("ValueError detected not sending!")
+        logging.info("Trying again")
 
     #conn.send(data.encode())
 def cont_func():
