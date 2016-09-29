@@ -18,7 +18,7 @@ bwd = 0
 #For Example:
 #[1,0.5] is forward and turned to the right halfway
 def Server():
-    host = "10.0.0.6"
+    host = "10.0.0.5"
     port = 5000
 
     mySocket = socket.socket()
@@ -54,8 +54,13 @@ def Main():
     lr = str(lar)
 
     global data
-    data = str(fb + " " + lr)
-    conn.send(data.encode())
+    test = str(fb + " " + lr)
+    data = str(test).split()
+    size = len(data)
+    if size != 1:
+        conn.send(data.encode())
+
+    #conn.send(data.encode())
 def cont_func():
     global close_loop
     close_loop = 19
@@ -147,7 +152,7 @@ def cont_func():
     button_map = []
 
     # Open the joystick device.
-    fn = '/dev/input/js0'
+    fn = '/dev/input/js1'
     #print(('Opening %s...' % fn))
     jsdev = open(fn, 'rb')
 
@@ -230,7 +235,7 @@ def cont_func():
                                 fwd = 1
                     else:
                         #print(("%s released" % (button)))
-                        if tlp ==1:
+                        if tlp == 1:
                             if button == 'tl':
                                 global bwd
                                 bwd = 0

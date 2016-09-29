@@ -21,7 +21,7 @@ def Main():
         lor = float(N2)
         fab = float(N1)
 
-        
+
 
 
         if fab == -1:
@@ -53,3 +53,5 @@ def Main():
 try:
 if __name__ == '__main__':
     Main()
+except ValueError:
+    GPIO.cleanup()
