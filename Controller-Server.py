@@ -264,6 +264,12 @@ def cont_func():
 
 try:
     Server()
-exept BrokenPipeError:
+except BrokenPipeError:
     print("Client Detected Bad Value attempting restart!")
+    restart = 1
     Main()
+except KeyboardInterrupt:
+    shutdown = "shutdown"
+    conn.send(shutdown.encode())
+    print("Shutting down server and client")
+    exit()
