@@ -1,6 +1,10 @@
 #!/bin/python3
 
-import socket, logging
+import socket, logging, time
+from Rpi.GPIO as GPIO
+GPIO.setmode(GPIO.BCM)
+chan_list = [5,6,13,19]
+GPIO.setup(chan_list, GPIO.OUT)
 
 def Main():
     host = '10.0.0.6'
@@ -12,16 +16,14 @@ def Main():
 
     while True:
         data = mySocket.recv(1024).decode()
-
         move_list = str(data).split()
-        size = len(move_list)
-        if size != 1:
-            N1 = move_list[len(move_list)-2]
-            N2 = move_list[len(move_list)-1]
+        N1 = move_list[len(move_list)-2]
+        N2 = move_list[len(move_list)-1]
+        if N1 == -1 or 0 or 1:
             lor = float(N2)
             fab = float(N1)
         else:
-            logging.warning("Server-Side check was ineffective!")
+            logging.warning("Bad Value detected, Removing...")
             logging.info("Trying again")
 
 
@@ -56,4 +58,7 @@ try:
 if __name__ == '__main__':
     Main()
 except ValueError:
+    print("Value Error Detected attempting restart!")
     GPIO.cleanup()
+    time.sleep(1)
+    Main()

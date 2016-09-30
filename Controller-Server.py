@@ -53,14 +53,15 @@ def Main():
     fb = str(fab)
     lr = str(lar)
 
-    global data
+
     test = str(fb + " " + lr)
     data = str(test).split()
-    size = len(data)
-    if size != 1:
+    T1 = data[len(data)-2]
+    T2 = data[len(data)-1]
+    if T1 == -1 or 0 or 1:
         conn.send(test.encode())
     else:
-        logging.warning("ValueError detected not sending!")
+        logging.warning("ValueError detected! Removing not sending!")
         logging.info("Trying again")
 
     #conn.send(data.encode())
@@ -256,4 +257,8 @@ def cont_func():
                     axis_states[axis] = fvalue
                     #print(("%s: %.3f" % (axis, fvalue)))
 
-Server()
+try:
+    Server()
+exept BrokenPipeError:
+    print("Client Detected Bad Value attempting restart!")
+    Main()
