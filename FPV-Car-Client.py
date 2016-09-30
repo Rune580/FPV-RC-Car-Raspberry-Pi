@@ -1,12 +1,18 @@
 #!/bin/python3
 
 import socket, logging, time
-from Rpi.GPIO as GPIO
+import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
 chan_list = [5,6,13,19]
 GPIO.setup(chan_list, GPIO.OUT)
+global restart
+restart = 0
 
 def Main():
+    if restart == 1:
+        global restart
+        restart = 0
+        print("Restarted Client Succesfully")
     host = '10.0.0.6'
     port = 5000
 
@@ -61,4 +67,7 @@ except ValueError:
     print("Value Error Detected attempting restart!")
     GPIO.cleanup()
     time.sleep(1)
+    GPIO.setmode(GPIO.BCM)
+    chan_list = [5,6,13,19]
+    GPIO.setup(chan_list, GPIO.OUT)
     Main()

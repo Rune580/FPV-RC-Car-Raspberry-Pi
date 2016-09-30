@@ -8,7 +8,8 @@ global fwd
 fwd = 0
 global bwd
 bwd = 0
-
+global restart
+restart = 0
 #Creates string to send to client
 #[0.0,0.0]
 #The first number will be with -1 to 1, -1 being bwd and 1 being fwd
@@ -34,6 +35,10 @@ def MainLoop():
         Main()
 
 def Main():
+    if restart == 1:
+        global restart
+        restart = 0
+        print("Restarted Server Succesfully")
     cont_func()
     #if lar < -0.3:
         #print("Left")
