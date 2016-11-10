@@ -2,7 +2,7 @@ import time
 import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
 input_list = [7,11]
-output_list = [12,13,15]
+output_list = [12,13]
 GPIO.setup(input_list, GPIO.IN)
 GPIO.setup(output_list, GPIO.OUT)
 
